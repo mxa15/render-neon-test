@@ -14,8 +14,8 @@ const db = new Pool({
 
 app.get("/", async (req, res) => {
   try {
-    const result = await db.query("SELECT NOW()");
-    res.send("Verbindung erfolgreich!<br><br>" + result.rows[0].now);
+    const result = await db.query("SELECT * FROM test WHERE id=$1", [1]);
+    res.send("Verbindung erfolgreich!<br><br>" + result.rows[0].data);
   } catch (err) {
     console.error(err);
     res.status(500).send("Fehler bei der Datenbankverbindung");
