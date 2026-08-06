@@ -16,12 +16,11 @@ app.get("/", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM test WHERE id=$1", [1]);
     res.send("Verbindung erfolgreich!<br><br>" + result.rows[0].data + "!");
+    console.log("server läuft");
   } catch (err) {
     console.error(err);
     res.status(500).send("Fehler bei der Datenbankverbindung");
   }
 });
-
-console.log("server läuft");
 
 app.listen(process.env.PORT || 3000);
